@@ -12,8 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import com.madan.mapping.CupcakeMapping;
+import com.madan.model.Cupcake;
 import com.madan.service.CakeService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends Activity {
@@ -30,6 +34,7 @@ public class MainActivity extends Activity {
         }
         CakeService service = new CakeService();
         String jsonResponse = null;
+        List<Cupcake> cupcakes = null;
         try {
             jsonResponse = service.execute("http://10.0.2.2:4567/cake-list").get().toString();
         } catch (InterruptedException e) {
@@ -38,6 +43,8 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         } finally {
             Log.i("Main Activity Response", jsonResponse);
+           cupcakes = CupcakeMapping.parse(jsonResponse);
+            Log.i("Second cake", cupcakes.get(1).getName());
         }
 
     }
