@@ -14,6 +14,8 @@ import android.os.Build;
 
 import com.madan.service.CakeService;
 
+import java.util.concurrent.ExecutionException;
+
 public class MainActivity extends Activity {
 
     @Override
@@ -27,7 +29,17 @@ public class MainActivity extends Activity {
                     .commit();
         }
         CakeService service = new CakeService();
-        service.execute("http://10.0.2.2:4567/cake-list");
+        String jsonResponse = null;
+        try {
+            jsonResponse = service.execute("http://10.0.2.2:4567/cake-list").get().toString();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } finally {
+            Log.i("Main Activity Response", jsonResponse);
+        }
+
     }
 
 

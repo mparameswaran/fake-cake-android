@@ -26,12 +26,12 @@ import java.util.Locale;
 /**
  * Created by Madan on 11/14/13.
  */
-public class CakeService extends AsyncTask<String, Void, Void>{
+public class CakeService extends AsyncTask<String, Void, String>{
 
 
 
     @Override
-    protected Void doInBackground(String... strings) {
+    protected String doInBackground(String... strings) {
        HttpClient httpClient = new DefaultHttpClient();
        HttpGet httpGet = new HttpGet(strings[0]);
         try{
@@ -46,7 +46,8 @@ public class CakeService extends AsyncTask<String, Void, Void>{
             while ((bufferedStringChunk = bufferedReader.readLine())!=null){
                 stringBuilder.append(bufferedStringChunk);
             }
-            Log.i("String Builder Output", stringBuilder.toString());
+
+            return stringBuilder.toString();
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -57,7 +58,7 @@ public class CakeService extends AsyncTask<String, Void, Void>{
 
 
     @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
     }
 }
