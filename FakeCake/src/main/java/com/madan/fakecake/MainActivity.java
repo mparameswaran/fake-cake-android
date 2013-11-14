@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+
+import com.madan.service.CakeService;
 
 public class MainActivity extends Activity {
 
@@ -58,6 +61,9 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            Log.i("Status", "Calling service");
+            CakeService service = new CakeService();
+            service.execute();
             return rootView;
         }
     }
