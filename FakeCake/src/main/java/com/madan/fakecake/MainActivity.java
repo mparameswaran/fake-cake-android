@@ -26,6 +26,8 @@ public class MainActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        CakeService service = new CakeService();
+        service.execute("http://10.0.2.2:4567/cake-list");
     }
 
 
@@ -62,8 +64,6 @@ public class MainActivity extends Activity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             Log.i("Status", "Calling service");
-            CakeService service = new CakeService();
-            service.execute();
             return rootView;
         }
     }
