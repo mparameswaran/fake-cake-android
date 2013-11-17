@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
         String jsonResponse = null;
 
         try {
-            jsonResponse = service.execute("http://10.0.2.2:4567/cake-list").get().toString();
+            jsonResponse = service.execute(getString(R.string.base_url)+"/cake-list").get().toString();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
