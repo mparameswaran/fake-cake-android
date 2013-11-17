@@ -1,7 +1,6 @@
 package com.madan.fakecake;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,31 +9,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.madan.mapping.CupcakeMapping;
 import com.madan.model.Cupcake;
 import com.madan.service.CakeService;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends Activity {
+    List<Cupcake> cupcakes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toast.makeText(this, "Loading...", Toast.LENGTH_LONG).show();
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
         CakeService service = new CakeService();
         String jsonResponse = null;
-        List<Cupcake> cupcakes = null;
+
         try {
             jsonResponse = service.execute("http://10.0.2.2:4567/cake-list").get().toString();
         } catch (InterruptedException e) {
@@ -42,9 +37,14 @@ public class MainActivity extends Activity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } finally {
-            Log.i("Main Activity Response", jsonResponse);
-           cupcakes = CupcakeMapping.parse(jsonResponse);
-            Log.i("Second cake", cupcakes.get(1).getName());
+            cupcakes = CupcakeMapping.parse(jsonResponse);
+            if (savedInstanceState == null) {
+                getFragmentManager().beginTransaction()
+                        .add(R.id.container, new PlaceholderFragment(cupcakes))
+                        .commit();
+            }
+
+
         }
 
     }
@@ -74,15 +74,22 @@ public class MainActivity extends Activity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
-
+        
+        private List<Cupcake> cupcakes;
         public PlaceholderFragment() {
+        }
+
+        public PlaceholderFragment(List<Cupcake> cupcakes) {
+            this.cupcakes = cupcakes;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            Log.i("Status", "Calling service");
+            CupcakeAdapter cupcakeAdapter = new CupcakeAdapter(this.getActivity(), R.layout.cupcake_list_item, cupcakes);
+            ListView listView = (ListView) rootView.findViewById(R.id.listview);
+            listView.setAdapter(cupcakeAdapter);
             return rootView;
         }
     }
