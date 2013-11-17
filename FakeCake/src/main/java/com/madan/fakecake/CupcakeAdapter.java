@@ -40,6 +40,7 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
 
     public static class CellViewHolder{
         public TextView name;
+        public TextView shortDescription;
     }
 
     public View getView(int position, View converterView, ViewGroup parent){
@@ -50,6 +51,7 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
             cellView = layoutInflater.inflate(layoutResourceId, parent, false);
             holder = new CellViewHolder();
             holder.name = (TextView) cellView.findViewById(R.id.name);
+            holder.shortDescription = (TextView) cellView.findViewById(R.id.short_description);
             cellView.setTag(holder);
         }
         else {
@@ -57,6 +59,7 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
         }
         Cupcake cupcake = cupcakes.get(position);
         holder.name.setText(cupcake.getName());
+        holder.shortDescription.setText(cupcake.getShortDescription());
         return cellView;
     }
 
