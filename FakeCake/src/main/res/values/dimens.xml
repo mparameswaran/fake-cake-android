@@ -2,9 +2,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="cupcake_name_text">20dp</dimen>
+    <dimen name="cupcake_name_text">18dp</dimen>
     <dimen name="cupcake_row_height">90dp</dimen>
-    <dimen name="cupcake_name_padding_left">150dp</dimen>
+    <dimen name="cupcake_name_padding_left">10dp</dimen>
+    <dimen name="cupcake_description_padding_right">10dp</dimen>
     <dimen name="cupcake_short_description">14dp</dimen>
     <dimen name="cupcake_description">12dp</dimen>
 </resources>
