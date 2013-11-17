@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.madan.model.Cupcake;
 
 import java.util.List;
@@ -40,7 +42,8 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
 
     public static class CellViewHolder{
         public TextView name;
-        public TextView shortDescription;
+        public ImageView imageView;
+        public  TextView description;
     }
 
     public View getView(int position, View converterView, ViewGroup parent){
@@ -51,7 +54,8 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
             cellView = layoutInflater.inflate(layoutResourceId, parent, false);
             holder = new CellViewHolder();
             holder.name = (TextView) cellView.findViewById(R.id.name);
-            holder.shortDescription = (TextView) cellView.findViewById(R.id.short_description);
+            holder.description = (TextView) cellView.findViewById(R.id.description);
+            holder.imageView = (ImageView) cellView.findViewById(R.id.cupcake_list_image);
             cellView.setTag(holder);
         }
         else {
@@ -59,7 +63,8 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
         }
         Cupcake cupcake = cupcakes.get(position);
         holder.name.setText(cupcake.getName());
-        holder.shortDescription.setText(cupcake.getShortDescription());
+        holder.description.setText(cupcake.getDescription());
+        UrlImageViewHelper.setUrlDrawable(holder.imageView, cupcake.getThumbnailURL());
         return cellView;
     }
 

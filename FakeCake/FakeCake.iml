@@ -70,6 +70,7 @@
     <orderEntry type="jdk" jdkName="Android API 17 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="java-json" level="project" />
+    <orderEntry type="library" name="urlimageviewhelper-1.0.4" level="project" />
   </component>
 </module>
 

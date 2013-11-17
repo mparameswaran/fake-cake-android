@@ -1,7 +1,12 @@
 package com.madan.model;
 
+import android.util.Log;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by Madan on 11/14/13.
@@ -10,6 +15,7 @@ public class Cupcake {
     private String name;
     private String shortDescription;
     private String description;
+    private String thumbnailURL;
 
     public Cupcake(JSONObject json)
     {
@@ -17,6 +23,7 @@ public class Cupcake {
             this.name = json.get("name").toString();
             this.shortDescription = json.get("short_description").toString();
             this.description = json.get("description").toString();
+            this.thumbnailURL = json.getJSONObject("images").get("thumbnail").toString();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -43,5 +50,13 @@ public class Cupcake {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getThumbnailURL() {
+        return thumbnailURL;
+    }
+
+    public void setThumbnailURL(String thumbnailURL) {
+        this.thumbnailURL = thumbnailURL;
     }
 }

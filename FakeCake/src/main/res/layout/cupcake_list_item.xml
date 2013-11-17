@@ -3,16 +3,23 @@
     android:orientation="horizontal" android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+    <ImageView
+        android:layout_height="80dp"
+        android:layout_width="80dp" android:id="@+id/cupcake_list_image"
+        android:contentDescription="@string/cupcake" />
+
     <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent" android:orientation="vertical">
+        android:layout_width="fill_parent" android:orientation="vertical"
+        android:layout_marginLeft="100dp">
+
         <TextView android:textSize="@dimen/cupcake_name_text" android:id="@+id/name"
             android:layout_width="fill_parent" android:layout_height="40dp"
-            android:layout_marginLeft="100dp">
+            >
         </TextView>
-         <TextView android:textSize="@dimen/cupcake_short_description" android:id="@+id/short_description"
-        android:layout_width="fill_parent" android:layout_height="60dp"
-        android:layout_marginLeft="100dp">
+
+        <TextView android:textSize="@dimen/cupcake_description" android:id="@+id/description"
+        android:layout_width="fill_parent" android:layout_height="60dp">
          </TextView>
     </LinearLayout>
 

@@ -6,4 +6,5 @@
     <dimen name="cupcake_row_height">90dp</dimen>
     <dimen name="cupcake_name_padding_left">150dp</dimen>
     <dimen name="cupcake_short_description">14dp</dimen>
+    <dimen name="cupcake_description">12dp</dimen>
 </resources>
