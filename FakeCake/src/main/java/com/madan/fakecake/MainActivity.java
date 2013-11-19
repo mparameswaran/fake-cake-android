@@ -2,6 +2,7 @@ package com.madan.fakecake;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.madan.mapping.CupcakeMapping;
@@ -89,6 +91,11 @@ public class MainActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             CupcakeAdapter cupcakeAdapter = new CupcakeAdapter(this.getActivity(), R.layout.cupcake_list_item, cupcakes);
             ListView listView = (ListView) rootView.findViewById(R.id.listview);
+            View header = inflater.inflate(R.layout.cupcake_list_header,null);
+            Typeface typewriterFont = Typeface.createFromAsset(getActivity().getAssets(),"moms_typewriter.ttf");
+            TextView headerText = (TextView) header.findViewById(R.id.header);
+            headerText.setTypeface(typewriterFont);
+            listView.addHeaderView(header);
             listView.setAdapter(cupcakeAdapter);
             return rootView;
         }

@@ -8,4 +8,5 @@
     <dimen name="cupcake_description_padding_right">10dp</dimen>
     <dimen name="cupcake_short_description">14dp</dimen>
     <dimen name="cupcake_description">12dp</dimen>
+    <dimen name="header_text_size">20dp</dimen>
 </resources>

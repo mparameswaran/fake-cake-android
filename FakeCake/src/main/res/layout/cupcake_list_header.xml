@@ -1,0 +1,12 @@
+<LinearLayout
+    android:layout_height="40dp"
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/header_text_size"
+        android:text="@string/cupcake_header"/>
+</LinearLayout>

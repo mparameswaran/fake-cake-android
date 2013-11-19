@@ -23,12 +23,14 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
     private List<Cupcake> cupcakes;
     private Context context;
     int layoutResourceId;
+    String baseURL = null;
 
     public CupcakeAdapter(Context context, int textViewResourceId, List<Cupcake> objects) {
         super(context, textViewResourceId, objects);
         this.context = context;
         this.cupcakes = objects;
         layoutResourceId = textViewResourceId;
+        baseURL = context.getString(R.string.base_url);
     }
 
 
@@ -64,7 +66,8 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
         Cupcake cupcake = cupcakes.get(position);
         holder.name.setText(cupcake.getName());
         holder.description.setText(cupcake.getDescription());
-        UrlImageViewHelper.setUrlDrawable(holder.imageView, cupcake.getThumbnailURL());
+
+        UrlImageViewHelper.setUrlDrawable(holder.imageView, baseURL+cupcake.getThumbnailURL());
         return cellView;
     }
 
