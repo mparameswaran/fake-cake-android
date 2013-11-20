@@ -1,10 +1,12 @@
 package com.madan.fakecake;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SpannableString s = new SpannableString(getString(R.string.cupcake_header));
+        s.setSpan(new TypefaceSpan(this, "moms_typewriter.ttf"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+// Update the action bar title with the TypefaceSpan instance
+        ActionBar actionBar = getActionBar();
+        actionBar.setTitle(s);
         Toast.makeText(this, "Loading...", Toast.LENGTH_LONG).show();
 
         CakeService service = new CakeService();
@@ -91,11 +100,6 @@ public class MainActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             CupcakeAdapter cupcakeAdapter = new CupcakeAdapter(this.getActivity(), R.layout.cupcake_list_item, cupcakes);
             ListView listView = (ListView) rootView.findViewById(R.id.listview);
-            View header = inflater.inflate(R.layout.cupcake_list_header,null);
-            Typeface typewriterFont = Typeface.createFromAsset(getActivity().getAssets(),"moms_typewriter.ttf");
-            TextView headerText = (TextView) header.findViewById(R.id.header);
-            headerText.setTypeface(typewriterFont);
-            listView.addHeaderView(header);
             listView.setAdapter(cupcakeAdapter);
             return rootView;
         }
