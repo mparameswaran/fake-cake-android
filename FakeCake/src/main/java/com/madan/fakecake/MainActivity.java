@@ -3,6 +3,7 @@ package com.madan.fakecake;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -90,11 +91,18 @@ public class MainActivity extends Activity {
     public static class PlaceholderFragment extends Fragment {
         
         private List<Cupcake> cupcakes;
+        private Activity mainListActivity;
         public PlaceholderFragment() {
         }
 
         public PlaceholderFragment(List<Cupcake> cupcakes) {
             this.cupcakes = cupcakes;
+        }
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+            this.mainListActivity = activity;
         }
 
         @Override
@@ -108,6 +116,9 @@ public class MainActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Log.i("Cupcake", ((TextView)view.findViewById(R.id.cupcake_name)).getText().toString());
+                    Intent intent = new Intent(mainListActivity, ProductDetail.class);
+                    intent.putExtra("name", cupcakes.get(i).getName());
+                    startActivity(intent);
                 }
             });
             return rootView;
