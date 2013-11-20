@@ -2,6 +2,7 @@ package com.madan.fakecake;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,8 @@ public class CupcakeAdapter extends ArrayAdapter<Cupcake> {
             cellView = layoutInflater.inflate(layoutResourceId, parent, false);
             holder = new CellViewHolder();
             holder.name = (TextView) cellView.findViewById(R.id.name);
+            Typeface typewriter = Typeface.createFromAsset(context.getAssets(),"fonts/moms_typewriter.ttf");
+            holder.name.setTypeface(typewriter);
             holder.description = (TextView) cellView.findViewById(R.id.description);
             holder.imageView = (ImageView) cellView.findViewById(R.id.cupcake_list_image);
             cellView.setTag(holder);

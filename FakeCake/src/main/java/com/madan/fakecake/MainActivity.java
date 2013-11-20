@@ -28,14 +28,14 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         SpannableString s = new SpannableString(getString(R.string.cupcake_header));
         s.setSpan(new TypefaceSpan(this, "moms_typewriter.ttf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-// Update the action bar title with the TypefaceSpan instance
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(s);
+        setContentView(R.layout.activity_main);
+
         Toast.makeText(this, "Loading...", Toast.LENGTH_LONG).show();
 
         CakeService service = new CakeService();
