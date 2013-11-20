@@ -1,0 +1,17 @@
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/splash_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/splash_title"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/cupcake_header"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/splash_title_size"/>
+</RelativeLayout>
