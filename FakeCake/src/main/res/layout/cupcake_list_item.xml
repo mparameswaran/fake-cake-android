@@ -14,7 +14,7 @@
         android:layout_width="fill_parent" android:orientation="vertical"
         >
 
-        <TextView android:textSize="@dimen/cupcake_name_text" android:id="@+id/name"
+        <TextView android:textSize="@dimen/cupcake_name_text" android:id="@+id/cupcake_name"
             android:layout_width="fill_parent" android:layout_height="40dp"
             android:paddingLeft="@dimen/cupcake_name_padding_left"
             android:paddingTop="@dimen/cupcake_name_padding_top">

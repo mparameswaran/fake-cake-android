@@ -3,16 +3,18 @@ package com.madan.fakecake;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.madan.mapping.CupcakeMapping;
@@ -102,6 +104,12 @@ public class MainActivity extends Activity {
             CupcakeAdapter cupcakeAdapter = new CupcakeAdapter(this.getActivity(), R.layout.cupcake_list_item, cupcakes);
             ListView listView = (ListView) rootView.findViewById(R.id.listview);
             listView.setAdapter(cupcakeAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Log.i("Cupcake", ((TextView)view.findViewById(R.id.cupcake_name)).getText().toString());
+                }
+            });
             return rootView;
         }
     }
