@@ -2,6 +2,8 @@ require 'sinatra'
 require 'sinatra/reloader' 
 require 'json'
 
+set :port, 5678
+
 get '/' do
 	"#{Time.now}"
 end
