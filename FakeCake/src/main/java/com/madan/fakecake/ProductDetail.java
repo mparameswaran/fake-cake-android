@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.widget.ImageView;
+
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 /**
  * Created by Madan on 11/20/13.
@@ -22,5 +25,7 @@ public class ProductDetail extends Activity {
 
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(s);
+        String baseUrl = getString(R.string.base_url);
+        UrlImageViewHelper.setUrlDrawable((ImageView)findViewById(R.id.product_image), baseUrl+intent.getStringExtra("image"));
     }
 }

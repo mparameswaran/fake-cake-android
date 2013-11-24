@@ -15,4 +15,5 @@
     <dimen name="splash_image_height">120dp</dimen>
     <dimen name="splash_image_width">120dp</dimen>
     <dimen name="splash_title_top_padding">10dp</dimen>
+    <dimen name="product_image_padding_top">20dp</dimen>
 </resources>

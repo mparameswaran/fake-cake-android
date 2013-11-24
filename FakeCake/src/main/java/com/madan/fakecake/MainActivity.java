@@ -118,6 +118,7 @@ public class MainActivity extends Activity {
                     Log.i("Cupcake", ((TextView)view.findViewById(R.id.cupcake_name)).getText().toString());
                     Intent intent = new Intent(mainListActivity, ProductDetail.class);
                     intent.putExtra("name", cupcakes.get(i).getName());
+                    intent.putExtra("image", cupcakes.get(i).getThumbnailURL());
                     startActivity(intent);
                 }
             });
