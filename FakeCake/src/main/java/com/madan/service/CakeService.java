@@ -1,6 +1,7 @@
 package com.madan.service;
 
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -53,9 +54,14 @@ public class CakeService extends AsyncTask<String, Void, String>{
             ex.printStackTrace();
         }
 
-        return null;
+        return "";
     }
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+    }
 
     @Override
     protected void onPostExecute(String s) {

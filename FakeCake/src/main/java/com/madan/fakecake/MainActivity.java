@@ -48,17 +48,17 @@ public class MainActivity extends Activity {
 
         try {
             jsonResponse = service.execute(getString(R.string.base_url)+"/cake-list").get().toString();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } finally {
             cupcakes = CupcakeMapping.parse(jsonResponse);
             if (savedInstanceState == null) {
                 getFragmentManager().beginTransaction()
                         .add(R.id.container, new PlaceholderFragment(cupcakes))
                         .commit();
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } finally {
 
 
         }
