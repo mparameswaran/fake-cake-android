@@ -3,7 +3,12 @@
     tools:context=".MainActivity" >
     <item android:id="@+id/cupcake_builder"
         android:icon="@drawable/ic_action_cupcake_builder"
+        android:onClick="cupcakeBuilder"
         android:title="@string/cupcake_builder"
+        android:showAsAction="always"/>
+    <item android:id="@+id/cart"
+        android:icon="@drawable/ic_action_basket"
+        android:title="@string/cart"
         android:showAsAction="always"/>
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"

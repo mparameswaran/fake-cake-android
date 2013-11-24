@@ -7,6 +7,7 @@
     <string name="base_url">http://10.0.2.2:4567</string>
     <string name="cupcake_header">Fake Cake Inc.</string>
     <string name="cupcake_builder">Build My Own</string>
+    <string name="cart">Shopping Cart</string>
 
 
 </resources>

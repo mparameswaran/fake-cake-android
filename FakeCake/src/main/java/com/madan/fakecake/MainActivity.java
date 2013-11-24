@@ -3,6 +3,7 @@ package com.madan.fakecake;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -85,6 +86,14 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void cupcakeBuilder(MenuItem item)
+    {
+
+        Intent intent = new Intent(MainActivity.this, CupcakeBuilder.class);
+        item.setIntent(intent);
+        startActivity(item.getIntent());
+
+    }
     /**
      * A placeholder fragment containing a simple view.
      */
