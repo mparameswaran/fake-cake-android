@@ -47,12 +47,6 @@ public class MainActivity extends Activity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
     private  void fetchCupcakes(Bundle instanceState)
     {
         service = new CakeService(this);

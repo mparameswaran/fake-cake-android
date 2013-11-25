@@ -79,6 +79,23 @@ INSERT INTO `cupcake_list` VALUES ('appcin00','Apple Cinnamon',12,'','Flavorful 
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `cupcake_listview`
+--
+
+DROP TABLE IF EXISTS `cupcake_listview`;
+/*!50001 DROP VIEW IF EXISTS `cupcake_listview`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `cupcake_listview` (
+  `name` tinyint NOT NULL,
+  `thumbnail` tinyint NOT NULL,
+  `description` tinyint NOT NULL,
+  `cupcake` tinyint NOT NULL,
+  `frosting` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `frosting`
 --
 
@@ -134,6 +151,25 @@ LOCK TABLES `image` WRITE;
 INSERT INTO `image` VALUES (1,'/images/vanilla-thumb.jpg','/images/vanilla.jpg','','','','','/images/vanilla-large.jpg'),(2,'/images/chocolate-thumb.jpg','/images/chocolate.jpg','','','','','/images/chocolate-large.jpg'),(3,'/images/choc-pb-thumb.jpg','/images/choc-pb.jpg','','','','','/images/choc-pb-large.jpg'),(4,'/images/choc-hazel-thumb.jpg','/images/choc-hazel.jpg','','','','','/images/choc-hazel-large.jpg'),(5,'/images/espresso-thumb.jpg','/images/espresso.jpg','','','','','/images/espresso-large.jpg'),(6,'/images/mocha-thumb.jpg','/images/mocha.jpg','','','','','/images/mocha-large.jpg'),(7,'/images/neapolitan-thumb.jpg','/images/neapolitan.jpg','','','','','/images/neapolitan-large.jpg'),(8,'/images/toffee-thumb.jpg','/images/toffee.jpg','','','','','/images/toffee-large.jpg'),(9,'/images/cookies-cream-thumb.jpg','/images/cookies-cream.jpg','','','','','/images/cookies-cream-large.jpg'),(10,'/images/mint-choc-chip-thumb.jpg','/images/mint-choc-chip.jpg','','','','','/images/mint-choc-chip-large.jpg'),(11,'/images/strawberry-thumb.jpg','/images/strawberry.jpg','','','','','/images/strawberry-large.jpg'),(12,'/images/apple-cinnamon-thumb.jpg','/images/apple-cinnamon.jpg','','','','','/images/apple-cinnamon-large.jpg'),(13,'/images/lemon-thumb.jpg','/images/lemon.jpg','','','','','/images/lemon-large.jpg'),(14,'/images/pinacolada-thumb.jpg','/images/pinacolada.jpg','','','','','/images/pinacolada-large.jpg'),(15,'/images/peppermint-thumb.jpg','/images/peppermint.jpg','','','','','/images/peppermint-large.jpg'),(16,'/images/pumpkin-thumb.jpg','/images/pumpkin.jpg','','','','','/images/pumpkin-large.jpg');
 /*!40000 ALTER TABLE `image` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `cupcake_listview`
+--
+
+/*!50001 DROP TABLE IF EXISTS `cupcake_listview`*/;
+/*!50001 DROP VIEW IF EXISTS `cupcake_listview`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `cupcake_listview` AS select `cupcake_list`.`name` AS `name`,`image`.`thumbnail` AS `thumbnail`,`cupcake_list`.`description` AS `description`,`base_cupcake`.`cupcake` AS `cupcake`,`frosting`.`frosting` AS `frosting` from (((`cupcake_list` join `image` on((`cupcake_list`.`images` = `image`.`id`))) join `base_cupcake` on((`cupcake_list`.`base_cupcake` = `base_cupcake`.`sku`))) join `frosting` on((`cupcake_list`.`frosting` = `frosting`.`sku`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -144,4 +180,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-24 19:31:42
+-- Dump completed on 2013-11-25 15:02:45
