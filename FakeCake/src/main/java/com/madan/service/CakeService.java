@@ -5,6 +5,9 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.madan.fakecake.MainActivity;
+import com.madan.fakecake.R;
+
 import org.apache.http.Header;
 import org.apache.http.HeaderIterator;
 import org.apache.http.HttpEntity;
@@ -29,7 +32,15 @@ import java.util.Locale;
  */
 public class CakeService extends AsyncTask<String, Void, String>{
 
+    private MainActivity activity;
+    private static ProgressDialog progressDialog;
+    public CakeService(MainActivity mainActivity) {
 
+        this.activity = mainActivity;
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle(getActivity().getString(R.string.loading));
+        progressDialog.setMessage(getActivity().getString(R.string.fetching_cupcakes));
+    }
 
     @Override
     protected String doInBackground(String... strings) {
@@ -60,11 +71,20 @@ public class CakeService extends AsyncTask<String, Void, String>{
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-
+        progressDialog.show();
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        progressDialog.dismiss();
+    }
+
+    public MainActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(MainActivity activity) {
+        this.activity = activity;
     }
 }

@@ -8,6 +8,8 @@
     <string name="cupcake_header">Fake Cake Inc.</string>
     <string name="cupcake_builder">Build My Own</string>
     <string name="cart">Shopping Cart</string>
+    <string name="loading">Loading</string>
+    <string name="fetching_cupcakes">Fetching Cupcakes</string>
 
 
 </resources>

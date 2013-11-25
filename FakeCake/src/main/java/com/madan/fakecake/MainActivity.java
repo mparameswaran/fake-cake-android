@@ -27,9 +27,11 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends Activity {
     List<Cupcake> cupcakes;
-
+    CakeService service;
+    Bundle cupcakeSavedInstanceState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        cupcakeSavedInstanceState = savedInstanceState;
         setTheme(R.style.AppTheme);
         SpannableString s = new SpannableString(getString(R.string.cupcake_header));
         s.setSpan(new TypefaceSpan(this, "moms_typewriter.ttf"), 0, s.length(),
@@ -41,30 +43,38 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(this, "Loading...", Toast.LENGTH_LONG).show();
 
-        CakeService service = new CakeService();
-        String jsonResponse = null;
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchCupcakes(cupcakeSavedInstanceState);
+    }
+
+    private  void fetchCupcakes(Bundle instanceState)
+    {
+        service = new CakeService(this);
+        String jsonResponse;
         try {
             jsonResponse = service.execute(getString(R.string.base_url)+"/cake-list").get().toString();
             cupcakes = CupcakeMapping.parse(jsonResponse);
-            if (savedInstanceState == null) {
-                getFragmentManager().beginTransaction()
-                        .add(R.id.container, new PlaceholderFragment(cupcakes))
-                        .commit();
-            }
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } finally {
 
+            if (instanceState == null && cupcakes != null && cupcakes.size() > 0) {
+                getFragmentManager().beginTransaction()
+                        .add(R.id.container, new PlaceholderFragment(cupcakes))
+                        .commit();
+            }
 
         }
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
