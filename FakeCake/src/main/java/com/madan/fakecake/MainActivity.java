@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
         service = new CakeService(this);
         String jsonResponse;
         try {
-            jsonResponse = service.execute(getString(R.string.base_url)+"/cake-list").get().toString();
+            jsonResponse = service.execute(getString(R.string.cupcake_list)).get().toString();
             cupcakes = CupcakeMapping.parse(jsonResponse);
 
         } catch (InterruptedException e) {

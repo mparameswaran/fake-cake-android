@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `cupcake_list`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cupcake_list` (
   `sku` varchar(50) NOT NULL,
-  `name` varchar(75) DEFAULT NULL,
+  `name` varchar(75) CHARACTER SET utf8 DEFAULT NULL,
   `images` int(11) NOT NULL,
   `short_description` varchar(100) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE `cupcake_list` (
 
 LOCK TABLES `cupcake_list` WRITE;
 /*!40000 ALTER TABLE `cupcake_list` DISABLE KEYS */;
-INSERT INTO `cupcake_list` VALUES ('appcin00','Apple Cinnamon',12,'','Flavorful blend of baked apples and cinnamon','vanreg1','bcrm00',NULL),('ccream00','Cookies & Cream',9,'','Cookie bits with rich flavourful cream.','vanreg1','ccrm00',NULL),('choc00','Chocolate',2,'','Dark and handsome, also sinfully good.','chocreg1','bcrm00',NULL),('chochaz00','Chocolate Hazelnut',4,'','Chocolately with a hint of.. no hints just hazelnuts and chocolate.','chocreg1','bcrm00',NULL),('chocmint00','Mint Chocolate Chip',10,'','Minty fresh with bits of chocolate chips','chocreg1','bcrm00',NULL),('chocoffee00','Mocha',6,'','Perfect blend of coffee and chocolate.','chocreg1','bcrm00',NULL),('chocpb00','Chocolate Peanut Butter',3,'','Chocolately, nutty, creamy enough and chunky enough.','chocreg1','bcrm01pb',NULL),('coffee00','Espresso',5,'','Rich, perfect roast. Now you can have your coffee and eat it too.','vanreg1','bcrm00',NULL),('lemerin00','Lemon Meringue',13,'','Creamy sour sweet fresh citrus taste','vanreg1','bcrm00',NULL),('pcolada00','PiÃ±acolada',14,'','Pinapple and coconuts, typical Caribbean flavor','vanreg1','bcrm00',NULL),('pepmint00','Peppermint',15,'','Fresh tingly cool and pepperminty.','vanreg1','bcrm00',NULL),('pumpkin00','Sweet Pumpkin',16,'','Adventurously flavorful reminder of autumn or fall or Halloween','vanreg1','bcrm00',NULL),('straw00','Strawberry',11,'','Seriously strawberriliciously good.','vanreg1','bcrm00',NULL),('strawvanchoc00','Neapolitan',7,'','Chocolate, vanilla and strawberry all together.','vanreg1','bcrm00',NULL),('toffee00','Toffee',8,'','Caramelicious with hints of fresh milk. Only hints.','vanreg1','bcrm00',NULL),('van00','Vanilla',1,'','Not particularly adventurous but simple and elegant. Can\'t go wrong with this one.','vanreg1','bcrm00',NULL);
+INSERT INTO `cupcake_list` VALUES ('appcin00','Apple Cinnamon',12,'','Flavorful blend of baked apples and cinnamon','vanreg1','bcrm00',NULL),('ccream00','Cookies & Cream',9,'','Cookie bits with rich flavourful cream.','vanreg1','ccrm00',NULL),('choc00','Chocolate',2,'','Dark and handsome, also sinfully good.','chocreg1','bcrm00',NULL),('chochaz00','Chocolate Hazelnut',4,'','Chocolately with a hint of.. no hints just hazelnuts and chocolate.','chocreg1','bcrm00',NULL),('chocmint00','Mint Chocolate Chip',10,'','Minty fresh with bits of chocolate chips','chocreg1','bcrm00',NULL),('chocoffee00','Mocha',6,'','Perfect blend of coffee and chocolate.','chocreg1','bcrm00',NULL),('chocpb00','Chocolate Peanut Butter',3,'','Chocolately, nutty, creamy enough and chunky enough.','chocreg1','bcrm01pb',NULL),('coffee00','Espresso',5,'','Rich, perfect roast. Now you can have your coffee and eat it too.','vanreg1','bcrm00',NULL),('lemerin00','Lemon Meringue',13,'','Creamy sour sweet fresh citrus taste','vanreg1','bcrm10',NULL),('pcolada00','Piñacolada',14,'','Pinapple and coconuts, typical Caribbean flavor','vanreg1','bcrm00',NULL),('pepmint00','Peppermint',15,'','Fresh tingly cool and pepperminty.','vanreg1','bcrm00',NULL),('pumpkin00','Sweet Pumpkin',16,'','Adventurously flavorful reminder of autumn or fall or Halloween','vanreg1','bcrm00',NULL),('straw00','Strawberry',11,'','Seriously strawberriliciously good.','vanreg1','bcrm00',NULL),('strawvanchoc00','Neapolitan',7,'','Chocolate, vanilla and strawberry all together.','vanreg1','bcrm00',NULL),('toffee00','Toffee',8,'','Caramelicious with hints of fresh milk. Only hints.','vanreg1','bcrm00',NULL),('van00','Vanilla',1,'','Not particularly adventurous but simple and elegant. Can\'t go wrong with this one.','vanreg1','bcrm00',NULL);
 /*!40000 ALTER TABLE `cupcake_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +166,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `cupcake_listview` AS select `cupcake_list`.`name` AS `name`,`image`.`thumbnail` AS `thumbnail`,`cupcake_list`.`description` AS `description`,`base_cupcake`.`cupcake` AS `cupcake`,`frosting`.`frosting` AS `frosting` from (((`cupcake_list` join `image` on((`cupcake_list`.`images` = `image`.`id`))) join `base_cupcake` on((`cupcake_list`.`base_cupcake` = `base_cupcake`.`sku`))) join `frosting` on((`cupcake_list`.`frosting` = `frosting`.`sku`))) */;
+/*!50001 VIEW `cupcake_listview` AS select `cupcake_list`.`name` AS `name`,`image`.`thumbnail` AS `thumbnail`,`cupcake_list`.`description` AS `description`,`base_cupcake`.`cupcake` AS `cupcake`,`frosting`.`frosting` AS `frosting` from (((`cupcake_list` join `image` on((`cupcake_list`.`images` = `image`.`id`))) join `base_cupcake` on((`cupcake_list`.`base_cupcake` = `base_cupcake`.`sku`))) join `frosting` on((`cupcake_list`.`frosting` = `frosting`.`sku`))) order by `cupcake_list`.`name` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -180,4 +180,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-25 15:02:45
+-- Dump completed on 2013-11-25 17:35:59

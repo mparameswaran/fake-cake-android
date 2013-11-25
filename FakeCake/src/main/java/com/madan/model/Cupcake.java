@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Cupcake {
     private String name;
-    private String shortDescription;
+
     private String description;
     private String thumbnailURL;
 
@@ -21,7 +21,6 @@ public class Cupcake {
     {
         try {
             this.name = json.get("name").toString();
-            this.shortDescription = json.get("short_description").toString();
             this.description = json.get("description").toString();
             this.thumbnailURL = json.getJSONObject("images").get("thumbnail").toString();
         } catch (JSONException e) {
@@ -34,14 +33,6 @@ public class Cupcake {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
     }
 
     public String getDescription() {
