@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.view.Menu;
 
 /**
  * Created by Madan on 11/24/13.
@@ -21,5 +22,12 @@ public class CupcakeBuilder extends Activity {
 
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(s);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.cupcake_builder, menu);
+        return true;
     }
 }
