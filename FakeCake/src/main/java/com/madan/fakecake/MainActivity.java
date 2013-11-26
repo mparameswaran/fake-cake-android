@@ -53,7 +53,8 @@ public class MainActivity extends Activity {
         String jsonResponse;
         try {
             jsonResponse = service.execute(getString(R.string.cupcake_list)).get().toString();
-            cupcakes = CupcakeMapping.parse(jsonResponse);
+            if (jsonResponse != null) cupcakes = CupcakeMapping.parse(jsonResponse);
+            else cupcakes = null;
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -123,9 +124,11 @@ public class MainActivity extends Activity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             CupcakeAdapter cupcakeAdapter = new CupcakeAdapter(this.getActivity(), R.layout.cupcake_list_item, cupcakes);
-            ListView listView = (ListView) rootView.findViewById(R.id.listview);
-            listView.setAdapter(cupcakeAdapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           if(this.cupcakes!=null || this.cupcakes.size() > 0)
+           {
+                ListView listView = (ListView) rootView.findViewById(R.id.listview);
+                listView.setAdapter(cupcakeAdapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Log.i("Cupcake", ((TextView)view.findViewById(R.id.cupcake_name)).getText().toString());
@@ -135,6 +138,7 @@ public class MainActivity extends Activity {
                     startActivity(intent);
                 }
             });
+           }
             return rootView;
         }
     }
