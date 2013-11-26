@@ -42,32 +42,21 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        fetchCupcakes(cupcakeSavedInstanceState);
-
+        fetchCupcakes();
 
     }
 
-    private  void fetchCupcakes(Bundle instanceState)
+    private  void fetchCupcakes()
     {
         service = new CakeService(this);
-        String jsonResponse;
+
         try {
-            jsonResponse = service.execute(getString(R.string.cupcake_list)).get().toString();
-            if (jsonResponse != null) cupcakes = CupcakeMapping.parse(jsonResponse);
-            else cupcakes = null;
+            service.execute(getString(R.string.cupcake_list)).get().toString();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        } finally {
-
-            if (instanceState == null && cupcakes != null && cupcakes.size() > 0) {
-                getFragmentManager().beginTransaction()
-                        .add(R.id.container, new PlaceholderFragment(cupcakes))
-                        .commit();
-            }
-
         }
     }
 
@@ -99,6 +88,24 @@ public class MainActivity extends Activity {
         startActivity(item.getIntent());
 
     }
+
+    public void showList(int statusCode, String response) {
+        Log.d("Status Code", String.valueOf(statusCode));
+        Log.d("Response on Post execute",response);
+        if (response != null)
+        {
+            cupcakes = CupcakeMapping.parse(response);
+            if (cupcakeSavedInstanceState == null ) {
+                getFragmentManager().beginTransaction()
+                        .add(R.id.container, new PlaceholderFragment(cupcakes))
+                        .commit();
+            }
+
+
+        }
+        else cupcakes = null;
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */

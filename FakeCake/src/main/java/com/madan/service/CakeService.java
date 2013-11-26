@@ -34,6 +34,8 @@ public class CakeService extends AsyncTask<String, Void, String>{
 
     private MainActivity activity;
     private static ProgressDialog progressDialog;
+    private int statusCode;
+
     public CakeService(MainActivity mainActivity) {
 
         this.activity = mainActivity;
@@ -48,8 +50,6 @@ public class CakeService extends AsyncTask<String, Void, String>{
        HttpGet httpGet = new HttpGet(strings[0]);
         try{
             HttpResponse response = httpClient.execute(httpGet);
-            Log.i("Response Sinatra", response.toString());
-            System.out.println(response);
             InputStream inputStream = response.getEntity().getContent();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -58,7 +58,7 @@ public class CakeService extends AsyncTask<String, Void, String>{
             while ((bufferedStringChunk = bufferedReader.readLine())!=null){
                 stringBuilder.append(bufferedStringChunk);
             }
-
+            setStatusCode(response.getStatusLine().getStatusCode());
             return stringBuilder.toString();
         }
         catch (Exception ex){
@@ -67,6 +67,7 @@ public class CakeService extends AsyncTask<String, Void, String>{
 
         return "";
     }
+
 
     @Override
     protected void onPreExecute() {
@@ -78,6 +79,7 @@ public class CakeService extends AsyncTask<String, Void, String>{
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         progressDialog.dismiss();
+        getActivity().showList(getStatusCode(), s);
     }
 
     public MainActivity getActivity() {
@@ -86,5 +88,13 @@ public class CakeService extends AsyncTask<String, Void, String>{
 
     public void setActivity(MainActivity activity) {
         this.activity = activity;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 }
